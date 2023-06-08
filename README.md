@@ -1,4 +1,5 @@
-# Coding_Workspace
+# Coding_Workspace 
+
 자료구조, 알고리즘 등 개인공부한 내용들을 올리는 저장소입니다.
 
 # JAVA 문법
@@ -7,7 +8,7 @@
 
 **자바 기본 문법**
 
-[자바의 변수](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [데이터 타입](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [연산자](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [조건문](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), 메서드, 클래스 등과 같은 기본 문법을 이해해야 합니다. 자바 언어의 기본 구문과 문법에 익숙해지는 것이 중요합니다.
+[자바의 변수](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [데이터 타입](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [연산자](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), [조건문](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21), 메서드, [클래스](https://www.notion.so/JAVA-610da8f3061540b08e10b0bd8b92cf30?pvs=21) 등과 같은 기본 문법을 이해해야 합니다. 자바 언어의 기본 구문과 문법에 익숙해지는 것이 중요합니다.
 
 **객체 지향 프로그래밍 (OOP)**
 
@@ -643,9 +644,15 @@ object란 우리가 실생활에서 인식할 수 있는 사물로 설명할 수
 
 **메소드(method)**란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라고 할 수 있다.
 
+**클래스의 선언**
+
+클래스란 객체 지향 프로그래밍의 추상화라는 개념을 직접 구현한 것이다.
+
+자바에서 클래스를 선언하는 방법은 접근 제어자와 함께 class 키워드를 사용한다
+
 ---
 
-인스턴스(instance)
+**인스턴스(instance)**
 
 자바에서 클래스를 사용하기 위해서는 해당 클래스 타입의 객체(object)를 선언해야 한다.
 
@@ -682,7 +689,7 @@ phone.onoff( )
 
 phone.airplaneMode( )
 
-인스턴스(instance)
+**인스턴스(instance)**
 
 내 폰(myPhone) : 설계도에 의해 생산된 휴대폰
 
@@ -692,13 +699,73 @@ phone.airplaneMode( )
 
 하지만 각 인스턴스 마다 가지고 있는 프로파티의 값은 전부 다를 것이다.
 
-메소드(method)
+**클래스의 구성요소**
+
+자바에서 클래스는 멤버(member)로 속성을 표현하는 필드(field)와 기능을 표현하는 메소드(method)를 가진다.
+
+클래스는 생성된 객체의 필드를 초기화해주는 특별한 메소등인 생성자(constructor)을 가진다.
+
+```jsx
+class Phone {
+	private String modelName;
+	//문자열 타입의 private 멤버변수
+	private int modelYear;
+	//정수형 타입의 private 멤버변수
+
+	Phone(String modelName, int modelYear){//생성자 선언
+		this.modelName = modelName;
+		//modelName 피라미터 값을 modelName 멤버변수에 할당
+		this.modelYear = medelYear;
+		//modelYear 피라미터 값을 modelYear 멤버변수에 할당
+	}
+
+	public String getModel() {//getModel 메서드 선언
+		return this.modelYear + "년식" + this.modelName + " " + this.color
+		//modelYear와 modelName을 조합하여 반환
+	}
+}
+
+```
+
+**`modelName`**과 **`modelYear`**는 private 멤버 변수로 선언되어 클래스 외부에서 직접 접근할 수 없다.
+
+대신 생성자를 통해 값을 초기화 하여 **`getModel`**  메서드를 통해 값을 반환할 수 있다.
+
+생성자 **`Phone(String modelName, int modelYear)`**은 두 개의 파라미터를 받아서 **`modelName`**과 **`modelYear`** 멤버 변수에 값을 할당한다. **`this`** 키워드는 현재 인스턴스를 가리키며, **`this.modelName`**과 **`this.modelYear`**는 인스턴스의 멤버 변수를 참조한다.
+
+**`getModel`** 메서드는 **`modelYear`**와 **`modelName`**을 조합하여 문자열로 반환하고 반환되는 문자열은 **`modelYear + "년식 " + modelName`**의 형태다.
+
+이제 **`Phone`** 클래스를 사용하여 객체를 생성하고 **`getModel`** 메서드를 호출하여 값을 확인할 수 있다. 예를 들어:
+
+```jsx
+public class Main {
+	public static void main(String[] args) {
+		Phone myPhone = new Phone("Galaxy S21", 2021);
+		//클래스이름 객체참조변수이름 = new 클래스이름();
+		System.out.println(myPhone.getModel()); // "2021년식 Galaxy S21" 출력
+	}
+}
+```
+
+위의 예시 코드에서 **`Phone`** 클래스의 인스턴스 **`myPhone`**을 생성하고 생성자에 "Galaxy S21"과 2021을 전달하여 객체를 초기화 한다. 그리고 **`getModel`** 메서드를 호출하여 모델명과 출시년도를 문자열로 출력한다. 출력 결과는 "2021년식 Galaxy S21"이 된다.
+
+**필드(field)**
+
+클래스의 필드란 클래스에 포함된 변수를 의미한다.
+
+클래스 내에서 필드는 선언된 위치에 따라 다음과 같이 구분된다.
+
+1. 클래스 변수
+2. 인스턴스 변수
+3. 지역 변수
+
+## **메소드(method)**
 
 자바에서 클래스는 멤버(meber)로 속성을 표현하는 필드(field)와 기능을 표현하는 메소드(method)를 가진다.
 
 그중에서 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라고 할 수 있다.
 
-자바에서 메소드를 덩의하는 방법은
+자바에서 메소드를 정의하는 방법은
 
 ```jsx
 접근제어자 반환타입 메소드이름(매개변수목록) {
@@ -712,25 +779,300 @@ phone.airplaneMode( )
 4. 매개변수 목록(parameters) : 메소드 호출 시에 전달되는 인수의 값을 저장할 변수들을 명시.
 5. 구현부 : 메소드의 고유 기능을 수행하는 명령문의 집합.
 
-*하나의 클래스에 같은 일므의 메소드를 둘 이상 정의할 수 없다.
+*하나의 클래스에 같은 이름의 메소드를 둘 이상 정의할 수 없다.
 
 >>> 하지만 메소드 오버로딩(overloading)을 이용하면, 같은 이름의 메소드를 중복하여 정의할 수 있다.
 
 메소드 오버로딩이란 매개변수의 개수나 타입을 다르게 하여 같은 이름의 또 다른 메소드를 작성하는 것이다.
 
-클래스의 구성요소
+**메소드**
 
-자바에서 클래스는 멤버(member)로 속성을 표현하는 필드(field)와 기능을 표현하는 메소드(method)를 가진다.
+클래스에서 메소드란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이다.
 
-클래스는 생성된 객체의 필드를 초기화해주는 특별한 메소등인 생성자(constructor)을 가진다.
+즉, 메소드를 사용하여 중복되는 코드의 반복적인 프로그래밍을 피할 수 있게 된다.
+
+또한, 모듈화로 인해 전체적인 코드의 가독성이 좋아지고 손쉽게 유지보수를 할 수 있다.
+
+**메소드 정의**
 
 ```jsx
-class Phone {
-	private String modelName;
-	private int modelYear; 
+접근제어자 반환타입 메소드이름(매개변수목록) { // 선언부
+
+    // 구현부
+
+}
 ```
 
+1. 접근 제어자 : 해당 메소드에 접근할 수 있는 범위를 명시
+2. 반환 타입(return type) : 메소드가 모든 작업을 마치고 반환하는 데이터의 타입을 명시
+3. 메소드 이름 : 메소드를 호출하기 위한 이름을 명시
+4. 매개변수 목록(parameters) : 메소드 호출 시에 전달되는 인수의 값을 저장할 변수들을 명시
+5. 구현부 : 메소드의 고유 기능을 수행하는 명령문의 집합
 
+**메소드 호출**
+
+멤버 참조 연산자(.)를 사용하여 호출
+
+```jsx
+public class Main {
+	public static void main(String[] args) {
+		Phone myPhone = new Phone(); //객체를 생성
+		myPhone.getModel("Galaxy S21", 2021);
+		//myPhone 인스턴스의 getModel() 메소드를 호출
+	}
+}
+```
+
+**생성자**
+
+인스턴스 변수의 초기화
+
+클래스를 가지고 객체를 생성하면, 해당 캑체는 메모리에 즉시 생성된다. 하지만 생성된 객체는 모든 인스턴스 변수가 아직 초기화되지 않은 상태다.
+
+따라서 자바에서는 객체의 생성과 동시에 인스턴스 변수를 원하는 값으로 초기화 할 수 있는 생성자라는 메소드를 제공한다
+
+자바에서 생성자의 이름은 해당 클래스의 이름과 같아야 한다.
+
+Phone 클래스의 생성자는 Phone( ) 이 된다.
+
+1. 생성자는 반환값이 없지만, 반환 타입을 void형으로 선언하지 않는다.
+2. 생성자는 초기화를 위한 데이터를 인수로 전달받을 수 있다.
+3. 객체를 초기화하는 방법이 여러 개 존재할 경우에는 하나의 클래스가 여러 개의 생성자를 가질 수 있다.
+    
+    즉, 생성자도 하나의 메소드이므로, 메소드 오버로딩이 가능하다는 의미.
+    
+
+```jsx
+Phone(String modelName) {}
+
+Phone(String modelName, int modelYear) {}
+
+Phone(String modelName, int modelYear, String color) {}
+
+Phone(String modelName, int modelYear, String color, int maxSpeeds) {
+		this.modelName = modelName;
+
+    this.modelYear = modelYear;
+
+    this.color = color;
+
+    this.maxSpeed = maxSpeed;
+
+    this.currentSpeed = 0;
+}
+
+```
+
+### 생성자의 호출
+
+자바에서는 new 키워드를 사용하여 객체를 생성할 때 자동으로 생성자가 호출된다.
+
+```jsx
+class Phone{
+
+    private String modelName;
+
+    private int modelYear;
+
+    private String color;
+
+    private int maxSpeed;
+
+    private int currentSpeed;
+
+ 
+
+    Car(String modelName, int modelYear, String color, int maxSpeed) {
+
+        this.modelName = modelName;
+
+        this.modelYear = modelYear;
+
+        this.color = color;
+
+        this.maxSpeed = maxSpeed;
+
+        this.currentSpeed = 0;
+
+    }
+
+ 
+
+    public String getModel() {
+
+        return this.modelYear + "년식 " + this.modelName + " " + this.color;
+
+    }
+
+}
+
+ 
+
+public class Method02 {
+
+    public static void main(String[] args) {
+		Phone myPhone = new Phone("Galaxy S21", 2021, "흰색", 200);
+		// 생성자의 호출
+		System.out.println(myPhone.getModel()); //생성자에 의해 초기화되었는지를 확인함.
+	}
+
+}
+```
+
+## **this 참조 변수**
+
+현재 객체의 참조를 가르키는 키워드
+
+class 내부에서 인스턴스 변수, 인스턴스 메서드, 또는 다른 생성자를 참조할 때 사용된다
+
+this는 해당 클래스의 현재 인스턴스를 가르키며 인스턴스의 멤버에 접근할 수 있도록 도와준다
+
+```jsx
+class Person {
+    private String name;
+
+    public Person(String name) {
+        this.name = name; // name은 생성자의 파라미터, this.name은 인스턴스 변수
+    }
+
+    public void setName(String name) {
+        this.name = name; // name은 메서드의 파라미터, this.name은 인스턴스 변수
+    }
+}
+```
+
+**`this.name`**은 인스턴스 변수 **`name`**을 가리킨다.  **`this`**를 사용하여 현재 객체의 인스턴스 변수를 명시적으로 참조할 수 있다.
+
+## this( )
+
+this( )는 같은 클래스의 다른 생성자를 호출하는 특별한 문법이다
+
+생성자 내에서 다른 생성자를 호출할 때 사용되며 객체 초기화를 단순화하고 코드의 중복을 피할 수 있다.
+
+this( ) 호출은 생성자 내에서 첫 번째 문장으로 작성되어야 한다.
+
+```jsx
+class Rectangle {
+    private int width;
+    private int height;
+
+    public Rectangle() {
+        this(0, 0); // Rectangle(int width, int height) 생성자 호출
+    }
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+}
+```
+
+위 예시에서 생성자는 위의 예시에서 **`Rectangle()`** 생성자는 **`this(0, 0)`**을 통해 **`Rectangle(int width, int height)`** 생성자를 호출한다. 이렇게 함으로써 매개변수를 가지고 있는 다른 생성자를 호출하면서 객체를 초기화할 수 있다. 이를 통해 초기화 코드의 중복을 피하고, 생성자 간의 로직을 재사용할 수 있다.
+
+이처럼 **`this`**와 **`this()`**는 자바에서 객체의 참조와 생성자 호출에 사용되는 특별한 키워드다. **`this`**를 사용하여 인스턴스 변수와 메서드를 참조하고, **`this()`**를 사용하여 같은 클래스의 다른 생성자를 호출할 수 있다.
+
+## 메소드 오버로딩
+
+JAVA에서 메소드 오버로딩은 동일한 메소드 이름을 가지면서 매개변수의 개수, 순서, 타입이 다른 여러 개의 메소드를 정의하는 것을 말한다.
+
+메소드 오버로딩은 코드의 가독성을 높이고 유지 보수성을 개선하기 위해 사용된다.
+
+**메소드 오버로딩의 규칙**
+
+1. 메소드 이름이 동일해야 한다.
+2. 메소드 시그니처가 달라야 한다. 메소드 시그니처는 매개변수의 개수, 순서, 타입으로 결정된다.
+    
+    반환 타입은 메소드 시그니처에 포함되지 않는다.
+    
+
+  3. 메소드 시그니처는 메소드를 구별하기 위해 사용된다.
+
+**메소드 오버로딩의 장점**
+
+1. 가독성 향상 : 메소드의 이름이 동일하므로 비슷한 동작을 하는 메소드들을 논리적으로 그룹화하여 코드를 읽고 이해하기 쉽게 만든다.
+2. 유연성 : 당양한 매개변수 조합에 따라 메소드를 호출할 수 있다. 메소드 시그니처에 막는 가장 적합한 메소드가 자동으로 선택된다.
+3. 중복 코드 제거 : 비슷한 동작을 하는 메소드들을 하나로 통합하여 코드의 중복을 제거할 수 있다.
+4. 코드의 일관성 : 같은 목적을 가지고 있는 메소드들을 동일한 이름으로 정의하므로, 메소드의 목적과 역할이 명확해지고 일관성을 유지할 수 있다.
+
+**메소드 오버로딩 예시**
+
+```jsx
+class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+```
+
+위의 예시에서 **`Calculator`** 클래스는 **`add`**라는 메소드를 세 번 오버로딩하고 있다.
+
+ 첫 번째 **`add`** 메소드는 두 개의 정수를 더하여 정수를 반환한다.
+
+ 두 번째 **`add`** 메소드는 두 개의 실수를 더하여 실수를 반환한다.
+
+ 세 번째 **`add`** 메소드는 세 개의 정수를 더하여 정수를 반환한다.
+
+이렇게 메소드 오버로딩을 사용하면, 동일한 기능을 가진 메소드들을 하나의 이름으로 그룹화하여 사용할 수 있다.
+
+호출 시에는 인자의 타입과 개수에 따라 적절한 메소드가 자동으로 선택되어 실행된다.
+
+메소드 오버로딩은 자바에서 유용한 기능 중 하나로, 다양한 매개변수 조합에 대해 일관된 인터페이스를 제공하면서 코드의 가독성과 재사용성을 향상시킨다.
+
+## **패키지**
+
+**패키지**
+
+자바에서 패키지란 클래스와 인터페이스의 집합을 의미한다.
+
+이렇게 서로 관련이 있는 클래스나 인터페이스를 함께 묶음으로써 파일을 효율적으로 관리 할 수 있다.
+
+JAVA에서 패키지는 물리적으로 하나의 디렉터리를 말한다.
+
+**ipmport 문**
+
+패키지에 속한 클래스를 다른 파일에서 사용하기 위해서는 클래스 이름 앞에 패키지의 경로까지 포함한 풀 네임을 명시해 사용해야 한다.
+
+하지만 클래스를 사용할 때마다 매번 긴 이름을 사용하는 것은 비효율 적이므로 자바에서는 import키워드를 별도로 제공한다.
+
+import문은 자바 컴파일러에 코드에서 사용할 클래스의 패키지에 대한 정보를 미리 제종하는 역할을 한다.  따라서  import문을 사용하면 다른 패키지에 속한 클래스를 패키지이름을 제외한 클래스 이름만으로 사용 할 수 있다.
+
+```jsx
+java.lang.String
+//위의 예제에서 자바의 String 클래스는 java.lang 패키지에 속한 클래스라는 것을 알 수 있다.
+
+package 패키지이름;
+//위와 같은 명령문을 클래스나 인터페이스의 소스 파일에 추가한다.
+//이때 패키지 이름에는 패키지의 경로까지 포함한 풀 네임을 명시해야 한다.
+
+import 패키지이름.클래스이름; //1
+
+import 패키지이름.*; //2
+//패키지 이름에는 페키지의 경로까지 포함한 풀 네임을 명시해야 한다.
+// 1번의 방법은 해당 패키지의 특정 클래스만을 사용하고자 할 때 사용한다.
+// 2번의 방법은 해당 패키지의 모든 클래스를 클래스 이름만으로 사용하고 싶을때 사용한다.
+
+import java.awt.*;
+
+import java.util.*;
+//import문을 사용할때 (*)을 사용하는 것이 해당 패키지에 포함된 다른 모든 하위 패키지의 클래스를
+//포함하는 것은 아니다.
+
+//import java.*; <<< 사용 x
+//또한, 자바에서는 가장 많이 사용하는 java.lang 패키지에 대해서는 
+//import 문을 사용하지 않아도 클래스 이름만으로 사용할 수 있다.
+```
+
+## **접근 제어자**
+
+제어자(modifier)
 
 **문자열**
 
@@ -752,4 +1094,4 @@ class Phone {
 
 **쓰레드**
 
-**입출력과 파일**
+# Coding_Workspace 자료구조, 알고리즘 등 개인공부한 내용들을 올리는 저장소입니다.**입출력과 파일**
